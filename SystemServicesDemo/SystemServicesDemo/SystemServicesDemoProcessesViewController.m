@@ -229,16 +229,17 @@
 #endif
             )
         {
-            [_userAppProcesses addObject:pInfo];
+            [_userAppProcesses insertObject:pInfo atIndex:0];
         }
         else
         {
-            [_systemProcess addObject:pInfo];
+            [_systemProcess insertObject:pInfo atIndex:0];
         }
     }
     
     _tableArray = [NSMutableArray array];
-    if (_userAppProcesses.count > 0) {
+    if (_userAppProcesses.count > 0)
+    {
         [_tableArray addObject:_userAppProcesses];
     }
     [_tableArray addObject:_systemProcess];
