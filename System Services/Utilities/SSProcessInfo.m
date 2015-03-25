@@ -159,6 +159,52 @@
     }
 }
 
++ (NSString *)pathForProcess:(int)pid {
+    //get path for a certain process
+    @try {
+        // First ask the system how big a buffer we should allocate
+        int mib[3] = {CTL_KERN, KERN_ARGMAX, 0};
+        
+        size_t argmaxsize = sizeof(size_t);
+        size_t size = 0;
+        
+        int ret = sysctl(mib, 2, &size, &argmaxsize, NULL, 0);
+        
+        if (ret != 0) {
+            return nil;
+        }
+        
+        // Then we can get the path information we actually want
+        mib[1] = KERN_PROCARGS2;
+        mib[2] = (int)pid;
+        
+        char *procargv = malloc(size);
+        
+        ret = sysctl(mib, 3, procargv, &size, NULL, 0);
+        
+        if (ret != 0) {
+            free(procargv);
+            
+            return nil;
+        }
+        
+        // procargv is actually a data structure.
+        // The path is at procargv + sizeof(int)
+        if (procargv != NULL) {
+            NSString *path = [NSString stringWithCString:(procargv + sizeof(int))
+                                                encoding:NSASCIIStringEncoding];
+            
+            free(procargv);
+            
+            return(path);
+        }
+        return nil;
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+}
+
 // List of process information including PID's, Names, PPID's, and Status'
 + (NSMutableArray *)processesInformation {
     // Get the list of processes and all information about them
@@ -202,12 +248,13 @@
                     for (int i = nprocess - 1; i >= 0; i--) {
                         
                         NSString *processID = [[NSString alloc] initWithFormat:@"%d", process[i].kp_proc.p_pid];
-                        NSString *processName = [[NSString alloc] initWithFormat:@"%s", process[i].kp_proc.p_comm];
+                        NSString *processName = [[NSString alloc] initWithCString:process[i].kp_proc.p_comm encoding:NSUTF8StringEncoding];
                         NSString *processPriority = [[NSString alloc] initWithFormat:@"%d", process[i].kp_proc.p_priority];
                         NSDate   *processStartDate = [NSDate dateWithTimeIntervalSince1970:process[i].kp_proc.p_un.__p_starttime.tv_sec];
                         NSString       *processParentID = [[NSString alloc] initWithFormat:@"%d", [self parentPIDForProcess:(int)process[i].kp_proc.p_pid]];
                         NSString       *processStatus = [[NSString alloc] initWithFormat:@"%d", (int)process[i].kp_proc.p_stat];
                         NSString       *processFlags = [[NSString alloc] initWithFormat:@"%d", (int)process[i].kp_proc.p_flag];
+                        NSString *processPath = [self pathForProcess:process[i].kp_proc.p_pid];
                         
                         // Check to make sure all values are valid (if not, make them)
                         if (processID == nil || processID.length <= 0) {
@@ -238,12 +285,17 @@
                             // Invalid value
                             processFlags = @"Unkown";
                         }
+                        if (processPath == nil || processPath.length <= 0) {
+                            // Invalid value
+                            processPath = @"Unkown";
+                        }
+                        
                         
                         // Create an array of the objects
-                        NSArray *ItemArray = [NSArray arrayWithObjects:processID, processName, processPriority, processStartDate, processParentID, processStatus, processFlags, nil];
+                        NSArray *ItemArray = [NSArray arrayWithObjects:processID, processName, processPriority, processStartDate, processParentID, processStatus, processFlags, processPath, nil];
                         
                         // Create an array of keys
-                        NSArray *KeyArray = [NSArray arrayWithObjects:@"PID", @"Name", @"Priority", @"StartDate", @"ParentID", @"Status", @"Flags", nil];
+                        NSArray *KeyArray = [NSArray arrayWithObjects:@"PID", @"Name", @"Priority", @"StartDate", @"ParentID", @"Status", @"Flags", @"Path", nil];
                         
                         // Create the dictionary
                         NSDictionary *dict = [[NSDictionary alloc] initWithObjects:ItemArray forKeys:KeyArray];
