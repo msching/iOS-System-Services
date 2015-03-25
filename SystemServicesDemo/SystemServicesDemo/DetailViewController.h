@@ -10,7 +10,7 @@
 
 @interface DetailViewController : UIViewController
 
-@property (nonatomic, retain) NSString *slblName, *slblPID, *slblParentID, *slblParentName, *slblPriority, *slblStartDate, *slblStatus, *slblFlags;
+@property (nonatomic, retain) NSString *slblName, *slblPID, *slblParentID, *slblParentName, *slblPriority, *slblStartDate, *slblStatus, *slblFlags, *slblPath;
 
 @property (strong, nonatomic) IBOutlet UILabel *lblName;
 @property (strong, nonatomic) IBOutlet UILabel *lblPID;
@@ -20,5 +20,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblStartDate;
 @property (strong, nonatomic) IBOutlet UILabel *lblStatus;
 @property (strong, nonatomic) IBOutlet UILabel *lblFlags;
-
+@property (strong, nonatomic) IBOutlet UILabel *lblPath;
 @end

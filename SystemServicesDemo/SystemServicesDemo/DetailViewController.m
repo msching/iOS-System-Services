@@ -14,7 +14,7 @@
 
 @implementation DetailViewController
 
-@synthesize slblName, slblFlags, slblStatus, slblStartDate, slblPriority, slblParentName, slblParentID, slblPID, lblName, lblFlags, lblStatus, lblStartDate, lblPriority, lblParentName, lblParentID, lblPID;
+@synthesize slblName, slblFlags, slblStatus, slblStartDate, slblPriority, slblParentName, slblParentID, slblPID, slblPath, lblName, lblFlags, lblStatus, lblStartDate, lblPriority, lblParentName, lblParentID, lblPID, lblPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +38,7 @@
     self.lblParentName.text = slblParentName;
     self.lblParentID.text = slblParentID;
     self.lblPID.text = slblPID;
+    self.lblPath.text = slblPath;
 }
 
 - (void)didReceiveMemoryWarning

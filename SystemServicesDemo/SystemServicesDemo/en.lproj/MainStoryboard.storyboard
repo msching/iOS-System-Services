@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A569" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Dls-tQ-TNw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Dls-tQ-TNw">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
-        <!--System Services Demo Network View Controller - Network-->
+        <!--Network-->
         <scene sceneID="wHu-B6-fJj">
             <objects>
                 <viewController id="wiX-4C-LZY" customClass="SystemServicesDemoNetworkViewController" sceneMemberID="viewController">
@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="889" y="616"/>
         </scene>
-        <!--System Services Demo View Controller - Hardware-->
+        <!--Hardware-->
         <scene sceneID="PMb-g4-Ixz">
             <objects>
                 <viewController id="0xO-xi-MA5" customClass="SystemServicesDemoViewController" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
             </objects>
             <point key="canvasLocation" x="67" y="1222"/>
         </scene>
-        <!--System Services Demo Memory View Controller - Memory-->
+        <!--Memory-->
         <scene sceneID="WFY-H3-WgM">
             <objects>
                 <viewController id="Oxy-s2-exV" customClass="SystemServicesDemoMemoryViewController" sceneMemberID="viewController">
@@ -185,7 +185,7 @@
             </objects>
             <point key="canvasLocation" x="889" y="1199"/>
         </scene>
-        <!--System Services Demo Disk View Controller - Disk-->
+        <!--Disk-->
         <scene sceneID="RVB-2J-tM2">
             <objects>
                 <viewController id="tqZ-Rw-p70" customClass="SystemServicesDemoDiskViewController" sceneMemberID="viewController">
@@ -235,7 +235,7 @@
             </objects>
             <point key="canvasLocation" x="889" y="1821"/>
         </scene>
-        <!--System Services Demo Processes View Controller - Processes-->
+        <!--Processes-->
         <scene sceneID="5Xt-5m-2Z8">
             <objects>
                 <tableViewController id="stQ-EW-tho" customClass="SystemServicesDemoProcessesViewController" sceneMemberID="viewController">
@@ -346,6 +346,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Path: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kyK-YX-rsv">
+                                <rect key="frame" x="20" y="338" width="280" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -356,6 +363,7 @@
                         <outlet property="lblPID" destination="BIU-UO-HSC" id="Osr-hc-8Yz"/>
                         <outlet property="lblParentID" destination="aag-X2-ztp" id="sIn-0e-AUj"/>
                         <outlet property="lblParentName" destination="jer-4F-fg8" id="kiX-2x-rq7"/>
+                        <outlet property="lblPath" destination="kyK-YX-rsv" id="ib4-No-xod"/>
                         <outlet property="lblPriority" destination="eFi-JO-xMD" id="6Uj-K7-PD5"/>
                         <outlet property="lblStartDate" destination="PY0-rB-gUO" id="tCg-aN-LTg"/>
                         <outlet property="lblStatus" destination="3YO-hS-hmb" id="Qko-EA-kB1"/>
@@ -365,7 +373,7 @@
             </objects>
             <point key="canvasLocation" x="1292" y="2441"/>
         </scene>
-        <!--Navigation Controller - Processes-->
+        <!--Processes-->
         <scene sceneID="MH2-i8-Hvd">
             <objects>
                 <navigationController definesPresentationContext="YES" id="etA-4W-pqI" sceneMemberID="viewController">
@@ -381,7 +389,7 @@
             </objects>
             <point key="canvasLocation" x="539" y="2441"/>
         </scene>
-        <!--Navigation Controller - Disk-->
+        <!--Disk-->
         <scene sceneID="WZz-lF-OQB">
             <objects>
                 <navigationController definesPresentationContext="YES" id="St8-TJ-yPu" sceneMemberID="viewController">
@@ -397,7 +405,7 @@
             </objects>
             <point key="canvasLocation" x="539" y="1821"/>
         </scene>
-        <!--Navigation Controller - Memory-->
+        <!--Memory-->
         <scene sceneID="gwM-Rp-P4X">
             <objects>
                 <navigationController definesPresentationContext="YES" id="wlP-aI-SqW" sceneMemberID="viewController">
@@ -413,7 +421,7 @@
             </objects>
             <point key="canvasLocation" x="539" y="1199"/>
         </scene>
-        <!--Navigation Controller - Hardware-->
+        <!--Hardware-->
         <scene sceneID="pQb-am-ZLu">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Vjb-t2-cDF" sceneMemberID="viewController">
@@ -429,7 +437,7 @@
             </objects>
             <point key="canvasLocation" x="539" y="26"/>
         </scene>
-        <!--Navigation Controller - Network-->
+        <!--Network-->
         <scene sceneID="Llc-8E-GdO">
             <objects>
                 <navigationController definesPresentationContext="YES" id="OpT-BP-cxS" sceneMemberID="viewController">
